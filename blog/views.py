@@ -14,7 +14,7 @@ def index(request):
 
 def post(request, post_id):
     p = get_object_or_404(Post, pk=post_id)
-    c = Comment.objects.filter(post=post_id).order_by('-date')
+    c = Comment.objects.filter(post=post_id).order_by('date')
     return render_to_response('blog/post.html', {'post': p, 'comments': c},
                                 context_instance=RequestContext(request))
 
