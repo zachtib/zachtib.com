@@ -2,6 +2,7 @@
 	<ul>
 	{% for post in latest_post_list %}
 		<li><a href="/blog/{{ post.id }}/">{{ post.title }} </a>
+			<p>by {{ post.author }}</p>
 			<p>{{ post.text }}</p>
 		</li>
 	{% endfor %}
