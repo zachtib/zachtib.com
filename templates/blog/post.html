@@ -7,7 +7,15 @@
 	<h3>Comments:</h3>
 	<ul>
 	{% for comment in comments %}
-		<li>{{ comment.text }}</li>
+		<li><small>
+		{% if comment.author %}
+			{{ comment.author }}
+		{% else %}
+			Anonymous
+		{% endif %}
+		says:</small><br />
+			{{ comment.text }} <br />
+			<small>{{ comment.date }}</small></li>
 	{% endfor %}
 	</ul>
 {% else %}
