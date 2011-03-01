@@ -27,6 +27,6 @@ def comment(request, post_id):
             'post': p,
             'error_message': 'An error occurred.',
         }, context_instance=RequestContext(request))
-    c = Comment(post=p, text=ct, date=datetime.datetime.now())
+    c = Comment(post=p, text=ct)
     c.save()
     return HttpResponseRedirect(reverse('blog.views.post', args=(p.id,)))
