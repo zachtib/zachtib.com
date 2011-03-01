@@ -9,3 +9,6 @@ class Post(models.Model):
     postdate = models.DateTimeField('Post Date')
     editdate = models.DateTimeField('Edit Date')
     text = models.TextField('Post Text')
+
+    def __unicode__(self):
+        return self.title

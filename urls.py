@@ -8,6 +8,7 @@ urlpatterns = patterns('',
     # Example:
     # (r'^zachtib_com/', include('zachtib_com.foo.urls')),
     (r'^blog/$', 'blog.views.index'),
+    (r'^blog/(?P<post_id>\d+)/$', 'blog.views.post'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
