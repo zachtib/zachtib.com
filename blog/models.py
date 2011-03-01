@@ -12,3 +12,12 @@ class Post(models.Model):
 
     def __unicode__(self):
         return self.title
+
+class Comment(models.Model):
+    author = models.ForeignKey(User)
+    post = models.ForeignKey(Post)
+    text = models.TextField('Comment Text')
+    date = models.DateTimeField('Post Time')
+
+    def __unicode__(self):
+        return 'Comment by %s on %s' % (self.author, self.post)

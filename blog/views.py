@@ -1,5 +1,11 @@
+from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render_to_response, get_object_or_404
-from blog.models import Post
+from django.template import RequestContext
+
+import datetime
+
+from blog.models import Post, Comment
 
 def index(request):
     latest_post_list = Post.objects.all().order_by('-postdate')[:5]
@@ -7,4 +13,20 @@ def index(request):
 
 def post(request, post_id):
     p = get_object_or_404(Post, pk=post_id)
-    return render_to_response('blog/post.html', {'post': p})
+    c = Comment.objects.filter(post=post_id).order_by('-date')
+    return render_to_response('blog/post.html', {'post': p, 'comments': c},
+                                context_instance=RequestContext(request))
+
+def comment(request, post_id):
+    p = get_object_or_404(Post, pk=post_id)
+    try:
+        ct = request.POST['comment']
+    except KeyError:
+        return render_to_response('polls/post.html', {
+            'post': p,
+            'error_message': 'An error occurred.',
+        }, context_instance=RequestContext(request))
+    # TODO: Fix the author field rather than using the post author
+    c = Comment(author=p.author, post=p, text=ct, date=datetime.datetime.now())
+    c.save()
+    return HttpResponseRedirect(reverse('blog.views.post', args=(p.id,)))
