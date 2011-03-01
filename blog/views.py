@@ -1,3 +1,4 @@
+from django.contrib.auth.models import AnonymousUser
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render_to_response, get_object_or_404
@@ -26,7 +27,6 @@ def comment(request, post_id):
             'post': p,
             'error_message': 'An error occurred.',
         }, context_instance=RequestContext(request))
-    # TODO: Fix the author field rather than using the post author
-    c = Comment(author=p.author, post=p, text=ct, date=datetime.datetime.now())
+    c = Comment(post=p, text=ct, date=datetime.datetime.now())
     c.save()
     return HttpResponseRedirect(reverse('blog.views.post', args=(p.id,)))

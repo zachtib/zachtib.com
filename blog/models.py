@@ -14,7 +14,7 @@ class Post(models.Model):
         return self.title
 
 class Comment(models.Model):
-    author = models.ForeignKey(User)
+    author = models.ForeignKey(User, null=True, blank=True)
     post = models.ForeignKey(Post)
     text = models.TextField('Comment Text')
     date = models.DateTimeField('Post Time')
