@@ -7,6 +7,6 @@ class PostAdmin(admin.ModelAdmin):
 admin.site.register(Post, PostAdmin)
 
 class CommentAdmin(admin.ModelAdmin):
-    fields = ['post', 'author', 'date', 'text']
+    fields = ['post', 'author', 'text']
 
 admin.site.register(Comment, CommentAdmin)
