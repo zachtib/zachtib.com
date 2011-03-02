@@ -1,0 +1,12 @@
+<h1>{{ tag.name }}</h1>
+{% if posts %}
+	<p>Posts in {{ tag.name }}:</p>
+	<ul>
+	{% for post in posts %}
+		<li><a href = '/blog/{{ post.id }}/'>{{ post.title }}</a></li>
+	{% endfor %}
+	</ul>
+{% else %}
+<p>No posts found</p>
+{% endif %}
+<ul>
