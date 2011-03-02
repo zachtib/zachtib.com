@@ -7,6 +7,7 @@ from django.template import RequestContext
 import datetime
 
 from blog.models import Post, Comment, Tag
+from blog.forms import CommentForm
 
 def index(request):
     latest_post_list = Post.objects.all().order_by('-postdate')[:5]
@@ -17,7 +18,9 @@ def index(request):
 def post(request, post_id):
     p = get_object_or_404(Post, pk=post_id)
     c = Comment.objects.filter(post=post_id).order_by('date')
-    return render_to_response('blog/post.html', {'post': p, 'comments': c},
+    f = CommentForm()
+    return render_to_response('blog/post.html', {'post': p, 'comments': c,
+                                'form': f},
                                 context_instance=RequestContext(request))
 
 def comment(request, post_id):

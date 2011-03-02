@@ -21,8 +21,6 @@
 <p>Add a comment:</p>
 <form action="/blog/post/{{ post.id }}/comment/" method="post">
 {% csrf_token %}
-Name: <input type="text" name="name" /><br />
-Email: <input type="text" name="email" /><br />
-Comment: <textarea rows="10" cols="80" name="comment"></textarea><br />
+{{ form.as_p }}
 <input type="submit" value="Comment" />
 </form>
