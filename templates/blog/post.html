@@ -1,6 +1,6 @@
 <h1>{{ post.title }}</h1>
 <h3>{{ post.subtitle }}</h3>
-<p>{{ post.author }} on {{ post.postdate }}</p>
+<p>By {{ post.author }} on {{ post.postdate }} in {{ post.get_tags }}</p>
 <p>{{ post.text }}</p>
 
 {% if comments %}

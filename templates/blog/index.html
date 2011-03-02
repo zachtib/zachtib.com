@@ -3,6 +3,7 @@
 	{% for post in latest_post_list %}
 		<li><a href="/blog/post/{{ post.id }}/">{{ post.title }} </a>
 			<p><small>by {{ post.author }} on {{ post.postdate }}</small></p>
+			<p><small>Posted in: {{ post.get_tags }}</small></p>
 			<p>{{ post.text }}</p>
 			<p><small>{{ post.comment_count }} comments</small></p>
 		</li>
