@@ -1,9 +1,14 @@
 from blog.models import Post, Comment, Tag
 from django.contrib import admin
+from django.db import models
+from django.forms import CheckboxSelectMultiple
 
 class PostAdmin(admin.ModelAdmin):
     fields = ['title', 'subtitle', 'author', 'tags', 'text']
     list_display = ['title', 'author', 'get_tags', 'postdate', 'editdate']
+    formfield_overrides = {
+        models.ManyToManyField: {'widget': CheckboxSelectMultiple},
+    }
 
     def get_form(self, req, obj=None, **kwargs):
         self.current_user = req.user
