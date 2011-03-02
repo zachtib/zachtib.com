@@ -30,6 +30,11 @@ def comment(request, post_id):
             'error_message': 'An error occurred.',
         }, context_instance=RequestContext(request))
     c = Comment(post=p, text=ct)
+    k = request.POST.keys()
+    if 'name' in k:
+        c.name = request.POST['name']
+    if 'email' in k:
+        c.email = request.POST['email']
     c.save()
     return HttpResponseRedirect(reverse('blog.views.post', args=(p.id,)))
 

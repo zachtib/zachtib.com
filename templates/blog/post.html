@@ -8,14 +8,10 @@
 	<ul>
 	{% for comment in comments %}
 		<li><small>
-		{% if comment.author %}
-			{{ comment.author }}
-		{% else %}
-			Anonymous
-		{% endif %}
+		{% firstof comment.author comment.name "Anonymous" %}
 		says:</small><br />
-			{{ comment.text }} <br />
-			<small>{{ comment.date }}</small></li>
+		{{ comment.text }} <br />
+		<small>{{ comment.date }}</small></li>
 	{% endfor %}
 	</ul>
 {% else %}
