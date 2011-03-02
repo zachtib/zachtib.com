@@ -10,6 +10,8 @@ from blog.models import Post, Comment, Tag
 
 def index(request):
     latest_post_list = Post.objects.all().order_by('-postdate')[:5]
+    for post in latest_post_list:
+        post.comment_count = len(Comment.objects.filter(post=post.id))
     return render_to_response('blog/index.html', {'latest_post_list': latest_post_list})
 
 def post(request, post_id):

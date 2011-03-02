@@ -4,6 +4,7 @@
 		<li><a href="/blog/post/{{ post.id }}/">{{ post.title }} </a>
 			<p><small>by {{ post.author }} on {{ post.postdate }}</small></p>
 			<p>{{ post.text }}</p>
+			<p><small>{{ post.comment_count }} comments</small></p>
 		</li>
 	{% endfor %}
 	</ul>
