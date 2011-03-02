@@ -28,4 +28,4 @@ class Comment(models.Model):
     date = models.DateTimeField('Post Time', auto_now_add=True)
 
     def __unicode__(self):
-        return 'Comment by %s on %s' % ((self.author or self.name), self.post)
+        return 'Comment by %s on %s' % ((self.author or self.name or "Anonymous"), self.post)
