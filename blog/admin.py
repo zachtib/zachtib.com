@@ -1,8 +1,8 @@
-from blog.models import Post, Comment
+from blog.models import Post, Comment, Tag
 from django.contrib import admin
 
 class PostAdmin(admin.ModelAdmin):
-    fields = ['title', 'subtitle', 'author', 'text']
+    fields = ['title', 'subtitle', 'author', 'tags', 'text']
 
     def get_form(self, req, obj=None, **kwargs):
         self.current_user = req.user
@@ -20,6 +20,8 @@ class PostAdmin(admin.ModelAdmin):
 admin.site.register(Post, PostAdmin)
 
 class CommentAdmin(admin.ModelAdmin):
-    fields = ['post', 'author', 'text']
+    fields = ['post', 'author', 'name', 'email', 'text']
 
 admin.site.register(Comment, CommentAdmin)
+
+admin.site.register(Tag)
