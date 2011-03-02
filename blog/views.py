@@ -23,7 +23,7 @@ def comment(request, post_id):
     try:
         ct = request.POST['comment']
     except KeyError:
-        return render_to_response('polls/post.html', {
+        return render_to_response('blog/post.html', {
             'post': p,
             'error_message': 'An error occurred.',
         }, context_instance=RequestContext(request))
