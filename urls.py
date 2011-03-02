@@ -9,8 +9,8 @@ urlpatterns = patterns('',
     # (r'^zachtib_com/', include('zachtib_com.foo.urls')),
     (r'^$', 'home.views.index'),
     (r'^blog/$', 'blog.views.index'),
-    (r'^blog/(?P<post_id>\d+)/$', 'blog.views.post'),
-    (r'^blog/(?P<post_id>\d+)/comment/$', 'blog.views.comment'),
+    (r'^blog/post/(?P<post_id>\d+)/$', 'blog.views.post'),
+    (r'^blog/post/(?P<post_id>\d+)/comment/$', 'blog.views.comment'),
     (r'^blog/tag/(?P<tag_id>\d+)/$', 'blog.views.tag'),
 
     # Uncomment the admin/doc line below to enable admin documentation:

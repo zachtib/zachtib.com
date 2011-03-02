@@ -23,7 +23,7 @@
 {% endif %}
 
 <p>Add a comment:</p>
-<form action="/blog/{{ post.id }}/comment/" method="post">
+<form action="/blog/post/{{ post.id }}/comment/" method="post">
 {% csrf_token %}
 Name: <input type="text" name="name" /><br />
 Email: <input type="text" name="email" /><br />
