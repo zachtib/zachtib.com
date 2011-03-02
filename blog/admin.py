@@ -3,6 +3,7 @@ from django.contrib import admin
 
 class PostAdmin(admin.ModelAdmin):
     fields = ['title', 'subtitle', 'author', 'tags', 'text']
+    list_display = ['title', 'author', 'get_tags', 'postdate', 'editdate']
 
     def get_form(self, req, obj=None, **kwargs):
         self.current_user = req.user
@@ -21,6 +22,7 @@ admin.site.register(Post, PostAdmin)
 
 class CommentAdmin(admin.ModelAdmin):
     fields = ['post', 'author', 'name', 'email', 'text']
+    list_display = ['get_author', 'get_email', 'post', 'date']
 
 admin.site.register(Comment, CommentAdmin)
 
