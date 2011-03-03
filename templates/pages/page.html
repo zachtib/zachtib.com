@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 {% block title %}{{ page.title }}{% endblock %}
 {% block content %}
-{{ page.text }}
+{% if page %}
+    {{ page.text }}
+{% else %}
+    Page not found: {{ name }}
+{% endif %}
 {% endblock %}
