@@ -52,7 +52,7 @@
     <p>Skills</p>
     <ul>
     {% for skill in skills %}
-        <li>{{ skill }}</li>
+        <li>{{ skill.description }}</li>
     {% endfor %}
     </ul>
 {% endif %}
@@ -60,7 +60,10 @@
     <p>Extracurricular Activities</p>
     <ul>
     {% for extra in extras %}
-        <li>{{ extra }}</li>
+        <li>
+            {{ extra.description }}:
+            {{ extra.begindate }} - {{ extra.enddate }}
+        </li>
     {% endfor %}
     </ul>
 {% endif %}
