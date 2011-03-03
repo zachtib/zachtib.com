@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Resume{% endblock %}
+{% block content %}
+<h1>{{ resume.name }}</h1>
+<p>Objective - {{ resume.objective }}</p>
+{% if degrees %}
+    <p>Education</p>
+    <ul>
+    {% for degree in degrees %}
+        <li><p>{{ degree.school }}</p>
+            <p>{{ degree.degree }}</p>
+            <p>{{ degree.graddate }}</p></li>
+    {% endfor %}
+    </ul>
+{% endif %}
+{% if jobs %}
+    <p>Employment History</p>
+    <ul>
+    {% for job in jobs %}
+        <li><p>{{ job.company }}</p>
+            <p>{{ job.location }}</p>
+            <p>{{ job.position }}</p>
+            <p>{{ job.startdate }} -
+            {% if job.enddate %}
+                {{ job.enddate }}
+            {% else %}
+                Present
+            {% endif %}
+            </p>
+            <p>{{ job.description }}</p></li>
+    {% endfor %}
+    </ul>
+{% endif %}
+{% if projects %}
+    <p>Independent Projects</p>
+    <ul>
+    {% for project in projects %}
+        <li><p>{{ project.name }}</p>
+            <p>{{ project.position }}</p>
+            <p>{{ project.begindate }} -
+            {% if project.enddate %}
+                {{ project.enddate }}
+            {% else %}
+                Present
+            {% endif %}
+            </p>
+            <p>{{ project.description }}</p></li>
+    {% endfor %}
+    </ul>
+{% endif %}
+{% if skills %}
+    <p>Skills</p>
+    <ul>
+    {% for skill in skills %}
+        <li>{{ skill }}</li>
+    {% endfor %}
+    </ul>
+{% endif %}
+{% if extras %}
+    <p>Extracurricular Activities</p>
+    <ul>
+    {% for extra in extras %}
+        <li>{{ extra }}</li>
+    {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}

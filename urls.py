@@ -15,6 +15,8 @@ urlpatterns = patterns('',
     (r'^blog/post/(?P<post_id>\d+)/comment/$', 'blog.views.comment'),
     (r'^blog/tag/(?P<tag_id>\d+)/$', 'blog.views.tag'),
 
+    (r'^resume/$', 'resume.views.index'),
+
     (r'^static/(?P<path>.*)$', 'django.views.static.serve',
         {'document_root': settings.MEDIA_ROOT}),
     (r'^(?P<page_name>\w+)/$', 'pages.views.render'),
