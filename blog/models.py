@@ -48,4 +48,4 @@ class Comment(models.Model):
     get_email.short_description = 'Email'
 
     def __unicode__(self):
-        return 'Comment by %s on %s' % ((self.get_author), self.post)
+        return 'Comment by %s on %s' % ((self.get_author()), self.post)
