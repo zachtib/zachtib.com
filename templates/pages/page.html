@@ -2,7 +2,8 @@
 {% block title %}{{ page.title }}{% endblock %}
 {% block content %}
 {% if page %}
-    {{ page.text }}
+    {% load markup %}
+    {{ page.text|markdown }}
 {% else %}
     Page not found: {{ name }}
 {% endif %}
