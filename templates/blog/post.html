@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Blog - {{ post.title }}{% endblock %}
+{% block content %}
 <h1>{{ post.title }}</h1>
 <h3>{{ post.subtitle }}</h3>
 <p>By {{ post.author }} on {{ post.postdate }} in {{ post.get_tags }}</p>
@@ -24,3 +27,4 @@
 {{ form.as_p }}
 <input type="submit" value="Comment" />
 </form>
+{% endblock %}

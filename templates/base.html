@@ -2,23 +2,34 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
+    <link rel="stylesheet" href="/static/style.css" />
     <title>{% block title %}Default Page Title{% endblock %}</title>
 </head>
 
 <body>
+
+<div id="container">
     <div id="header">
         {% block header %}
+        {% include "header.html" %}
         {% endblock %}
     </div>
 
-    <div id="sidebar">
-        {% block sidebar %}
-        {% endblock %}
-    </div>
-
-    <div id="content">
+    <div id="content" class="colMS">
+    <div id="content-main">
         {% block content %}
+        Content should load here
         {% endblock %}
     </div>
+    <div id="content-related">
+        <div class="module" id="recent-actions-module">
+        {% block sidebar %}
+        {% include "sidebar.html" %}
+        {% endblock %}
+        </div>
+    </div>
+    </div>
+</div>
+
 </body>
 </html>

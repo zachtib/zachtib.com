@@ -1,14 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Blog{% endblock %}
+{% block content %}
 {% if latest_post_list %}
 	<ul>
 	{% for post in latest_post_list %}
-		<li><a href="/blog/post/{{ post.id }}/">{{ post.title }} </a>
-			<p><small>by {{ post.author }} on {{ post.postdate }}</small></p>
-			<p><small>Posted in: {{ post.get_tags }}</small></p>
+		<li><h2><a href="/blog/post/{{ post.id }}/">{{ post.title }}</h2></a>
+			<p>by {{ post.author }} on {{ post.postdate }}
+			in: {{ post.get_tags }}</p>
 			<p>{{ post.text }}</p>
-			<p><small>{{ post.comment_count }} comments</small></p>
+			<p>{{ post.comment_count }} comments</p>
 		</li>
 	{% endfor %}
 	</ul>
 {% else %}
 	<p>No posts are available</p>
 {% endif %}
+{% endblock %}
