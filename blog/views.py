@@ -25,22 +25,23 @@ def post(request, post_id):
 
 def comment(request, post_id):
     p = get_object_or_404(Post, pk=post_id)
-    try:
-        ct = request.POST['comment']
-    except KeyError:
-        return render_to_response('blog/post.html', {
-            'post': p,
-            'error_message': 'An error occurred.',
-        }, context_instance=RequestContext(request))
-    c = Comment(post=p, text=ct)
-    k = request.POST.keys()
-    if 'name' in k:
-        c.name = request.POST['name']
-    if 'email' in k:
-        c.email = request.POST['email']
-    c.save()
-    return HttpResponseRedirect(reverse('blog.views.post', args=(p.id,)))
-
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            cn = form.cleaned_data['name']
+            ce = form.cleaned_data['email']
+            ct = form.cleaned_data['comment']
+            c = Comment(post=p, name=cn, email=ce, text=ct)
+            c.save()
+            return HttpResponseRedirect(
+                reverse('blog.views.post', args=(p.id,)))
+    else:
+        form = CommentForm()
+    cs = Comment.objects.filter(post=post_id).order_by('date')
+    return render_to_response('blog/post.html',
+        {'post': p, 'comments': cs, 'error_message': 'An error occurred.',
+        'form': form},
+        context_instance=RequestContext(request))
 
 def tag(request, tag_id):
     t = get_object_or_404(Tag, pk=tag_id)

@@ -21,7 +21,9 @@
 {% else %}
 	<p>No comments yet.</p>
 {% endif %}
-
+{% if error_message %}
+<p>An error occurred submitting your comment. Please check that all required fields are filled out and try again.</p>
+{% endif %}
 <p>Add a comment:</p>
 <form action="/blog/post/{{ post.id }}/comment/" method="post">
 {% csrf_token %}
