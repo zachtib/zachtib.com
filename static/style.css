@@ -325,3 +325,8 @@ margin-left: 7em;
     background: #7CA0C7 url(img/admin/default-bg.gif) top left repeat-x;
     color: white;
 }
+
+td {
+  width:6em;
+  height:2em;
+  text-align:center;}
