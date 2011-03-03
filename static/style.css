@@ -302,6 +302,20 @@ input[type=text], input[type=password], textarea, select, .vTextField {
     background-position: top;
 }
 
+label
+{
+width: 6em;
+float: left;
+text-align: right;
+margin-right: 0.5em;
+display: block
+}
+
+.submit input
+{
+margin-left: 7em;
+}
+
 .module h2, .module caption, .inline-group h2 {
     margin: 0;
     padding: 2px 5px 3px 5px;
