@@ -6,9 +6,10 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
+    (r'^admin/', include(admin.site.urls)),
     # Example:
     # (r'^zachtib_com/', include('zachtib_com.foo.urls')),
-    (r'^$', 'home.views.index'),
+    (r'^$', 'pages.views.render', {'page_name': 'home'}),
     (r'^blog/$', 'blog.views.index'),
     (r'^blog/post/(?P<post_id>\d+)/$', 'blog.views.post'),
     (r'^blog/post/(?P<post_id>\d+)/comment/$', 'blog.views.comment'),
@@ -16,10 +17,9 @@ urlpatterns = patterns('',
 
     (r'^static/(?P<path>.*)$', 'django.views.static.serve',
         {'document_root': settings.MEDIA_ROOT}),
+    (r'^(?P<page_name>\w+)/$', 'pages.views.render'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
-    # Uncomment the next line to enable the admin:
-    (r'^admin/', include(admin.site.urls)),
 )
