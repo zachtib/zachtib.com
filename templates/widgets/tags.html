@@ -1,0 +1,9 @@
+{% if tags %}
+    <p>Tags</p>
+    <ul>
+    {% for tag in tags %}
+        <li>{{ tag.name }}: {{ tag.count }}</li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
