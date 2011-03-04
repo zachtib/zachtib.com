@@ -10,10 +10,10 @@ from blog.models import Post, Comment, Tag
 from blog.forms import CommentForm
 
 def index(request):
-    latest_post_list = Post.objects.all().order_by('-postdate')[:5]
-    for post in latest_post_list:
+    posts = Post.objects.all().order_by('-postdate')[:5]
+    for post in posts:
         post.comment_count = len(Comment.objects.filter(post=post.id))
-    return render_to_response('blog/index.html', {'latest_post_list': latest_post_list})
+    return render_to_response('blog/index.html', {'latest_post_list': posts})
 
 def post(request, post_id):
     p = get_object_or_404(Post, pk=post_id)
@@ -22,6 +22,20 @@ def post(request, post_id):
     return render_to_response('blog/post.html', {'post': p, 'comments': c,
                                 'form': f},
                                 context_instance=RequestContext(request))
+
+def archive(request, year=None, month=None, day=None, page=None):
+    if year is not None and month is not None and day is not None:
+        posts = Post.objects.filter(postdate__year=year,
+                                        postdate__month=month,
+                                        postdate__day=day)
+    elif year is not None and month is not None:
+        posts = Post.objects.filter(postdate__year=year,
+                                        postdate__month=month)
+    elif year is not None:
+        posts = Post.objects.filter(postdate__year=year)
+    elif page is not None:
+        posts = Post.objects.all()
+    return render_to_response('blog/index.html', {'latest_post_list': posts})
 
 def comment(request, post_id):
     p = get_object_or_404(Post, pk=post_id)
