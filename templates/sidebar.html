@@ -6,8 +6,7 @@ function init() {
     for (var i = 0; i < divs.length; i++) {
         if (divs[i].getAttribute("class") === 'widget') {i
             var div_id = divs[i].getAttribute("id");
-            alert(div_id);
-            $("#" + div_id + "").load("http://1228central.net:8000/widget/" + div_id + "");
+            $("#" + div_id + "").load("/widget/" + div_id + "");
         }
     }
 }
