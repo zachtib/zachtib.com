@@ -15,7 +15,16 @@ urlpatterns = patterns('',
     (r'^blog/post/(?P<post_id>\d+)/comment/$', 'blog.views.comment'),
     (r'^blog/tag/(?P<tag_id>\d+)/$', 'blog.views.tag'),
 
+    (r'^blog/archive/$', 'blog.views.archive'),
+    (r'^blog/archive/(?P<year>\d+)/$', 'blog.views.archive'),
+    (r'^blog/archive/(?P<year>\d+)/(?P<month>\d+)/$', 'blog.views.archive'),
+    (r'^blog/archive/(?P<year>\d+)/(?P<month>\d+)/(?P<day>\d+)/$', 'blog.views.archive'),
+
+    (r'^blog/page/(?P<page>\d+)/$', 'blog.views.archive'),
+
     (r'^resume/$', 'resume.views.index'),
+
+    (r'^widget/(?P<widget>\w+)/$', 'widgets.views.load'),
 
     (r'^static/(?P<path>.*)$', 'django.views.static.serve',
         {'document_root': settings.MEDIA_ROOT}),
