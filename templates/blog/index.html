@@ -7,7 +7,10 @@
 	{% for post in latest_post_list %}
 		<li><h2><a href="/blog/post/{{ post.id }}/">{{ post.title }}</h2></a>
 			<p>by {{ post.author }} on {{ post.postdate }}
-			in: {{ post.get_tags }}</p>
+            {% if post.get_tags %}
+			    in: {{ post.get_tags }}
+            {% endif %}
+            </p>
 			<p>{{ post.text|markdown }}</p>
 			<p>{{ post.comment_count }} comments</p>
 		</li>

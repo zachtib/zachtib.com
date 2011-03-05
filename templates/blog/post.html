@@ -3,8 +3,14 @@
 {% block content %}
 {% load markup %}
 <h1>{{ post.title }}</h1>
-<h3>{{ post.subtitle }}</h3>
-<p>By {{ post.author }} on {{ post.postdate }} in {{ post.get_tags }}</p>
+{% if post.subtitle %}
+    <h3>{{ post.subtitle }}</h3>
+{% endif %}
+<p>By {{ post.author }} on {{ post.postdate }}
+{% if post.get_tags %}
+    in {{ post.get_tags }}
+{% endif %}
+</p>
 <p>{{ post.text|markdown }}</p>
 
 {% if comments %}
