@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Blog - {{ tag.name }}{% endblock %}
+{% block content %}
 <h1>{{ tag.name }}</h1>
 {% if posts %}
 	<p>Posts in {{ tag.name }}:</p>
@@ -10,3 +13,4 @@
 <p>No posts found</p>
 {% endif %}
 <ul>
+{% endblock %}
