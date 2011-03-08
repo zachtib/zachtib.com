@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Tag(models.Model):
-    name = models.CharField(max_length=256)
+    name = models.CharField(unique=True, max_length=256)
 
     def __unicode__(self):
         return self.name

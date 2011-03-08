@@ -57,7 +57,7 @@ def comment(request, post_id):
         'form': form},
         context_instance=RequestContext(request))
 
-def tag(request, tag_id):
-    t = get_object_or_404(Tag, pk=tag_id)
+def tag(request, tag_name):
+    t = get_object_or_404(Tag, name=tag_name)
     p = t.post_set.all()
     return render_to_response('blog/tag.html', {'tag': t, 'posts': p})

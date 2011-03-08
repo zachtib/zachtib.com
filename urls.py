@@ -13,7 +13,7 @@ urlpatterns = patterns('',
     (r'^blog/$', 'blog.views.index'),
     (r'^blog/post/(?P<post_id>\d+)/$', 'blog.views.post'),
     (r'^blog/post/(?P<post_id>\d+)/comment/$', 'blog.views.comment'),
-    (r'^blog/tag/(?P<tag_id>\d+)/$', 'blog.views.tag'),
+    (r'^blog/tag/(?P<tag_name>\w+)/$', 'blog.views.tag'),
 
     (r'^blog/archive/$', 'blog.views.archive'),
     (r'^blog/archive/(?P<year>\d+)/$', 'blog.views.archive'),
