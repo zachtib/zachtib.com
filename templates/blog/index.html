@@ -7,8 +7,11 @@
 	{% for post in latest_post_list %}
 		<li><h2><a href="/blog/post/{{ post.id }}/">{{ post.title }}</h2></a>
 			<p>by {{ post.author }} on {{ post.postdate }}
-            {% if post.get_tags %}
-			    in: {{ post.get_tags }}
+            {% if post.tags %}
+                in:
+                {% for tag in post.tags.all %}
+                    <a href="/blog/tag/{{ tag }}/">{{ tag }}</a>
+                {% endfor %}
             {% endif %}
             </p>
 			<p>{{ post.text|markdown }}</p>

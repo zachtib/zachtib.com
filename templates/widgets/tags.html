@@ -2,7 +2,7 @@
     <p>Tags</p>
     <ul>
     {% for tag in tags %}
-        <li><a href = "/blog/tag/{{ tag.id }}">
+        <li><a href = "/blog/tag/{{ tag.name }}/">
             {{ tag.name }}: {{ tag.count }}</a></li>
     {% endfor %}
     </ul>

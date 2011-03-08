@@ -7,8 +7,11 @@
     <h3>{{ post.subtitle }}</h3>
 {% endif %}
 <p>By {{ post.author }} on {{ post.postdate }}
-{% if post.get_tags %}
-    in {{ post.get_tags }}
+{% if post.tags %}
+    in:
+    {% for tag in post.tags.all %}
+        <a href="/blog/tag/{{ tag }}/">{{ tag }}</a>
+    {% endfor %}
 {% endif %}
 </p>
 <p>{{ post.text|markdown }}</p>
