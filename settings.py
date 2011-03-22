@@ -75,6 +75,11 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'backend.processor.processor',
+)
+
 ROOT_URLCONF = 'zachtib_com.urls'
 
 TEMPLATE_DIRS = (
