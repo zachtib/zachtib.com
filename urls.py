@@ -11,7 +11,7 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
     # Example:
     # (r'^zachtib_com/', include('zachtib_com.foo.urls')),
-    (r'^$', 'pages.views.render', {'page_name': 'home'}),
+    (r'^$', 'home.views.index'),
     (r'^login/$', 'backend.views.backend_login'),
     (r'^logout/$', 'backend.views.backend_logout'),
 
