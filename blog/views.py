@@ -7,7 +7,7 @@ from django.template import RequestContext
 import datetime
 
 from blog.models import Post, Comment, Tag
-from blog.forms import CommentForm
+from blog.forms import AuthenticatedCommentForm, AnonymousCommentForm
 
 def index(request):
     posts = Post.objects.all().order_by('-postdate')[:5]
@@ -16,11 +16,14 @@ def index(request):
     return render_to_response('blog/index.html', {'latest_post_list': posts})
 
 def post(request, post_id):
-    p = get_object_or_404(Post, pk=post_id)
-    c = Comment.objects.filter(post=post_id).order_by('date')
-    f = CommentForm()
-    return render_to_response('blog/post.html', {'post': p, 'comments': c,
-                                'form': f},
+    post = get_object_or_404(Post, pk=post_id)
+    comments = Comment.objects.filter(post=post_id).order_by('date')
+    if request.user.is_authenticated():
+        logged_in_msg = 'Commenting as %s' % unicode(request.user)
+        form = AuthenticatedCommentForm()
+    else:
+        form = AnonymousCommentForm()
+    return render_to_response('blog/post.html', locals(),
                                 context_instance=RequestContext(request))
 
 def archive(request, year=None, month=None, day=None, page=None):
@@ -40,17 +43,23 @@ def archive(request, year=None, month=None, day=None, page=None):
 def comment(request, post_id):
     p = get_object_or_404(Post, pk=post_id)
     if request.method == 'POST':
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            cn = form.cleaned_data['name']
-            ce = form.cleaned_data['email']
-            ct = form.cleaned_data['comment']
-            c = Comment(post=p, name=cn, email=ce, text=ct)
-            c.save()
-            return HttpResponseRedirect(
-                reverse('blog.views.post', args=(p.id,)))
+        if request.user.is_authenticated():
+            form = AuthenticatedCommentForm(request.POST)
+            if form.is_valid():
+                cn = form.cleaned_data['name']
+                ce = form.cleaned_data['email']
+                ct = form.cleaned_data['comment']
+                c = Comment(post=p, name=cn, email=ce, text=ct)
+                c.save()
+                return HttpResponseRedirect(
+                    reverse('blog.views.post', args=(p.id,)))
+        else:
+            pass
     else:
-        form = CommentForm()
+        if request.user.is_authenticated():
+            form = AuthenticatedCommentForm()
+        else:
+            form = AnonymousCommentForm()
     cs = Comment.objects.filter(post=post_id).order_by('date')
     return render_to_response('blog/post.html',
         {'post': p, 'comments': cs, 'error_message': 'An error occurred.',

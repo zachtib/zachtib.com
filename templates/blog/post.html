@@ -31,6 +31,9 @@
 <p>An error occurred submitting your comment. Please check that all required fields are filled out and try again.</p>
 {% endif %}
 <p>Add a comment:</p>
+{% if logged_in_msg %}
+    <p>{{ logged_in_msg }}</p>
+{% endif %}
 <form action="/blog/post/{{ post.id }}/comment/" method="post">
 {% csrf_token %}
 {{ form.as_p }}

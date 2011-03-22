@@ -13,7 +13,7 @@ urlpatterns = patterns('',
     # (r'^zachtib_com/', include('zachtib_com.foo.urls')),
     (r'^$', 'pages.views.render', {'page_name': 'home'}),
     (r'^login/$', 'backend.views.backend_login'),
-
+    (r'^logout/$', 'backend.views.backend_logout'),
 
     (r'^blog/$', 'blog.views.index'),
     (r'^blog/feed/', LatestPostsFeed()),
