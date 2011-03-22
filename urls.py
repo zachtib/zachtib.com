@@ -5,12 +5,15 @@ from django.conf import settings
 from django.contrib import admin
 admin.autodiscover()
 
+from blog.feeds import LatestPostsFeed
+
 urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
     # Example:
     # (r'^zachtib_com/', include('zachtib_com.foo.urls')),
     (r'^$', 'pages.views.render', {'page_name': 'home'}),
     (r'^blog/$', 'blog.views.index'),
+    (r'^blog/feed/', LatestPostsFeed()),
     (r'^blog/post/(?P<post_id>\d+)/$', 'blog.views.post'),
     (r'^blog/post/(?P<post_id>\d+)/comment/$', 'blog.views.comment'),
     (r'^blog/tag/(?P<tag_name>\w+)/$', 'blog.views.tag'),
