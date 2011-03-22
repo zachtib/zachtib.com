@@ -10,7 +10,6 @@ class Tag(models.Model):
 class Post(models.Model):
     author = models.ForeignKey(User)
     title = models.CharField(max_length=256)
-    subtitle = models.CharField(max_length=256, null=True, blank=True)
     postdate = models.DateTimeField('Post Date', auto_now_add=True)
     editdate = models.DateTimeField('Edit Date', auto_now=True)
     text = models.TextField('Post Text')

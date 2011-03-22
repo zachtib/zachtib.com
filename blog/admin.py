@@ -4,7 +4,7 @@ from django.db import models
 from django.forms import CheckboxSelectMultiple
 
 class PostAdmin(admin.ModelAdmin):
-    fields = ['title', 'subtitle', 'author', 'tags', 'text']
+    fields = ['title', 'author', 'tags', 'text']
     list_display = ['title', 'author', 'get_tags', 'postdate', 'editdate']
     formfield_overrides = {
         models.ManyToManyField: {'widget': CheckboxSelectMultiple},
