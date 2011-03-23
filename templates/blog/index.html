@@ -5,7 +5,7 @@
     {% load markup %}
 	<ul>
 	{% for post in latest_post_list %}
-		<li><h2><a href="/blog/post/{{ post.id }}/">{{ post.title }}</h2></a>
+		<li><h2><a href="/blog/{{ post.id }}/{{ post.title|slugify }}/">{{ post.title }}</h2></a>
 			<p>by {{ post.author }} on {{ post.postdate }}
             {% if post.tags %}
                 in:

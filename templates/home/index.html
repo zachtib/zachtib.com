@@ -5,7 +5,7 @@
 <p>Welcome to zachtib.com - this site is currently a work in progress, but in the meantime, my old site is available at <a href = "http://blog.zachtib.com">blog.zachtib.com</a></p>
 {% if post %}
     <p>Most recent blog post:</p>
-    <h3>{{ post.title }}</h3>
+    <h3><a href = "/blog/{{ post.id }}/{{ post.title|slugify }}/">{{ post.title }}</a></h3>
     <p>{{ post.text|markdown }}</p>
 {% endif %}
 {% endblock %}
