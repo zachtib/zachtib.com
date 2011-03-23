@@ -1,5 +1,7 @@
 from django.shortcuts import render_to_response, get_object_or_404
 from django.contrib.admin.models import User
+from django.template import RequestContext
+
 from resume.models import Resume, Degree, Job, Project, Skill, Extracurricular
 
 def index(request):
@@ -16,4 +18,5 @@ def index(request):
                                     'projects': p,
                                     'skills': s,
                                     'extras': e,
-                                })
+                                },
+                                context_instance=RequestContext(request))

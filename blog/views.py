@@ -13,7 +13,8 @@ def index(request):
     posts = Post.objects.all().order_by('-postdate')[:5]
     for post in posts:
         post.comment_count = len(Comment.objects.filter(post=post.id))
-    return render_to_response('blog/index.html', {'latest_post_list': posts})
+    return render_to_response('blog/index.html', {'latest_post_list': posts},
+                                context_instance=RequestContext(request))
 
 def post(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
@@ -38,7 +39,8 @@ def archive(request, year=None, month=None, day=None, page=None):
         posts = Post.objects.filter(postdate__year=year)
     elif page is not None:
         posts = Post.objects.all()
-    return render_to_response('blog/index.html', {'latest_post_list': posts})
+    return render_to_response('blog/index.html', {'latest_post_list': posts},
+                                context_instance=RequestContext(request))
 
 def comment(request, post_id):
     p = get_object_or_404(Post, pk=post_id)
@@ -69,4 +71,5 @@ def comment(request, post_id):
 def tag(request, tag_name):
     t = get_object_or_404(Tag, name=tag_name)
     p = t.post_set.all()
-    return render_to_response('blog/tag.html', {'tag': t, 'posts': p})
+    return render_to_response('blog/tag.html', {'tag': t, 'posts': p},
+                                context_instance=RequestContext(request))
