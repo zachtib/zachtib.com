@@ -19,7 +19,6 @@ urlpatterns = patterns('',
     (r'^blog/$', 'blog.views.index'),
     (r'^blog/feed/', LatestPostsFeed()),
     (r'^blog/(?P<post_id>\d+)/(?P<post_slug>[-\w]+)/$', 'blog.views.post'),
-    (r'^blog/(?P<post_id>\d+)/$', 'blog.views.post'),
     (r'^blog/comment/(?P<post_id>\d+)/$', 'blog.views.comment'),
     (r'^blog/tag/(?P<tag_name>\w+)/$', 'blog.views.tag'),
 
