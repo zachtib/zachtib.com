@@ -12,4 +12,38 @@
         {% endfor %}
     </tr>
 </table>
-
+<div id="user-tools">
+{% if user.is_active %}
+        Welcome, {{ user.username }}.
+        {% if user.is_staff %}
+            <a href = "/admin/">Administration</a> /
+        {% endif %}
+        <a href = "/logout/">Logout</a>
+{% else %}
+    <form action="/login/" method="POST">{% csrf_token %}
+{{ formset.non_form_errors.as_ul }}
+<table id="formset" class="form">
+  <thead><tr>
+    {% for field in form.visible_fields %}
+    <th>{{ field.label|capfirst }}</th>
+    {% endfor %}
+  </tr></thead>
+  <tr class="{% cycle row1,row2 %}">
+  {% for field in form.visible_fields %}
+    <td>
+    {# Include the hidden fields in the form #}
+    {% if forloop.first %}
+      {% for hidden in form.hidden_fields %}
+      {{ hidden }}
+      {% endfor %}
+    {% endif %}
+      {{ field.errors.as_ul }}
+      {{ field }}
+    </td>
+  {% endfor %}
+    <td><input type="submit" value="Log in" /></td>
+  </tr>
+</table>
+    </form>
+{% endif %}
+</div>

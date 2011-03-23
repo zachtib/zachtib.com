@@ -1,7 +1,29 @@
-<form action="/login/" method="post">{% csrf_token %}
+<head>
+    <link rel="stylesheet" href="/static/style.css" /> 
+    <link rel="stylesheet" type="text/css" href="/media/css/login.css" />
+    <title>zachtib.com - Login</title>
+</head>
+
+<body class="login">
+
+<div id="container">
+<div id="header">
+<div id="branding">
+<h1 id="site-name">zachtib.com - Login</h1>
+</div>
+</div>
+
+<div id="content" class="colM">
+<div id="content-main"> 
+<form action="/login/" method="post" id="login-form">{% csrf_token %}
 {{ form.as_p }}
 {% if error_message %}
     <p> Error: {{ error_message }}</p>
 {% endif %}
 <input type="submit" value="Submit" />
 </form>
+</div>
+</div>
+</div>
+
+</body>

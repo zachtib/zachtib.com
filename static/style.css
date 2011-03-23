@@ -239,6 +239,15 @@ a.section:link, a.section:visited {
     color: #ffc;
 }
 
+#user-tools {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1.2em 10px;
+    font-size: 11px;
+    text-align: right;
+}
+
 /* SIDEBAR */
 
 #content-related h3 {
