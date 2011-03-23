@@ -16,7 +16,7 @@ def index(request):
     return render_to_response('blog/index.html', {'latest_post_list': posts},
                                 context_instance=RequestContext(request))
 
-def post(request, post_id, post_slug):
+def post(request, post_id, post_slug=None):
     post = get_object_or_404(Post, pk=post_id)
     comments = Comment.objects.filter(post=post_id).order_by('date')
     if request.user.is_authenticated():
