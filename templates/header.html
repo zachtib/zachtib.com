@@ -20,6 +20,7 @@
         {% endif %}
         <a href = "/logout/">Logout</a>
 {% else %}
+{% if login_form %}
     <form action="/login/" method="POST">{% csrf_token %}
 {{ formset.non_form_errors.as_ul }}
 <table id="formset" class="form">
@@ -32,7 +33,7 @@
   <tr class="{% cycle row1,row2 %}">
   {% for field in login_form.visible_fields %}
     <td>
-    {# Include the hidden fields in the form #}
+    {# Include the hidden fields in the login_form #}
     {% if forloop.first %}
       {% for hidden in login_form.hidden_fields %}
       {{ hidden }}
@@ -46,5 +47,6 @@
   </tr>
 </table>
     </form>
+{% endif %}
 {% endif %}
 </div>
