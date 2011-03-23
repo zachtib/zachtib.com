@@ -24,17 +24,17 @@
 {{ formset.non_form_errors.as_ul }}
 <table id="formset" class="form">
   <thead><tr>
-    {% for field in form.visible_fields %}
+    {% for field in login_form.visible_fields %}
     <th>{{ field.label|capfirst }}</th>
     {% endfor %}
     <th><small><a href="/register/">(register)</a></small></th>
   </tr></thead>
   <tr class="{% cycle row1,row2 %}">
-  {% for field in form.visible_fields %}
+  {% for field in login_form.visible_fields %}
     <td>
     {# Include the hidden fields in the form #}
     {% if forloop.first %}
-      {% for hidden in form.hidden_fields %}
+      {% for hidden in login_form.hidden_fields %}
       {{ hidden }}
       {% endfor %}
     {% endif %}

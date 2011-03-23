@@ -10,8 +10,8 @@ from backend.forms import LoginForm, RegisterForm
 
 def backend_login(request):
     if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
+        login_form = LoginForm(request.POST)
+        if login_form.is_valid():
             user = authenticate(username=request.POST['username'],
                                 password=request.POST['password'])
             if user is not None:
@@ -23,7 +23,7 @@ def backend_login(request):
             else:
                 error_message = 'Invalid Login'
     else:
-        form = LoginForm()
+        login_form = LoginForm()
 
     return render_to_response('backend/login.html', locals(),
         context_instance=RequestContext(request))
