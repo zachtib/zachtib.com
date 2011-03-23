@@ -1,6 +1,6 @@
 <head>
     <link rel="stylesheet" href="/static/style.css" /> 
-    <title>zachtib.com - {{ title }}</title>
+    <title>zachtib.com - Register</title>
 </head>
 
 <body class="login">
@@ -8,13 +8,13 @@
 <div id="container">
 <div id="header">
 <div id="branding">
-<h1 id="site-name">zachtib.com - {{ title }}</h1>
+<h1 id="site-name">zachtib.com - Register</h1>
 </div>
 </div>
 
 <div id="content" class="colM">
 <div id="content-main"> 
-<form action="/login/" method="post" id="login-form">{% csrf_token %}
+<form action="/register/" method="post" id="login-form">{% csrf_token %}
 {{ form.as_p }}
 {% if error_message %}
     <p> Error: {{ error_message }}</p>

@@ -14,6 +14,7 @@ urlpatterns = patterns('',
     (r'^$', 'home.views.index'),
     (r'^login/$', 'backend.views.backend_login'),
     (r'^logout/$', 'backend.views.backend_logout'),
+    (r'^register/$', 'backend.views.register'),
 
     (r'^blog/$', 'blog.views.index'),
     (r'^blog/feed/', LatestPostsFeed()),

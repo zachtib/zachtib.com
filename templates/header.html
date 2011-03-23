@@ -27,6 +27,7 @@
     {% for field in form.visible_fields %}
     <th>{{ field.label|capfirst }}</th>
     {% endfor %}
+    <th><small><a href="/register/">(register)</a></small></th>
   </tr></thead>
   <tr class="{% cycle row1,row2 %}">
   {% for field in form.visible_fields %}

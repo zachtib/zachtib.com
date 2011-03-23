@@ -313,7 +313,7 @@ input[type=text], input[type=password], textarea, select, .vTextField {
 
 label
 {
-width: 6em;
+width: 12em;
 float: left;
 text-align: right;
 margin-right: 0.5em;
