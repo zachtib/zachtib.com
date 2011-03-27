@@ -1,4 +1,5 @@
 from django.contrib.syndication.views import Feed
+from django.template.defaultfilters import slugify
 
 from blog.models import Post
 
@@ -17,4 +18,7 @@ class LatestPostsFeed(Feed):
         return item.text
 
     def item_link(self, item):
-        return '/blog/post/%d/' % item.id
+        return '/blog/post/%d/%s/' % (item.id, slugify(item.title))
+
+    def item_pubdate(self, item):
+        return item.postdate
