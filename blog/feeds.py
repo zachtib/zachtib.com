@@ -18,7 +18,7 @@ class LatestPostsFeed(Feed):
         return item.text
 
     def item_link(self, item):
-        return '/blog/post/%d/%s/' % (item.id, slugify(item.title))
+        return '/blog/%d/%s/' % (item.id, slugify(item.title))
 
     def item_pubdate(self, item):
         return item.postdate
