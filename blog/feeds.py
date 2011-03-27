@@ -3,6 +3,8 @@ from django.template.defaultfilters import slugify
 
 from blog.models import Post
 
+import markdown
+
 class LatestPostsFeed(Feed):
     title = 'zachtib.com/blog'
     link = '/blog/'
@@ -15,7 +17,7 @@ class LatestPostsFeed(Feed):
         return item.title
 
     def item_description(self, item):
-        return item.text
+        return markdown.markdown(item.text)
 
     def item_link(self, item):
         return '/blog/%d/%s/' % (item.id, slugify(item.title))
