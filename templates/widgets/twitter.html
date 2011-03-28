@@ -1,0 +1,8 @@
+{% if tweets %}
+    <p>Twitter</p>
+    <ul>
+    {% for tweet in tweets %}
+        <li>{{ tweet.text }}</li>
+    {% endfor %}
+    </ul>
+{% endif %}
