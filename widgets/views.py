@@ -3,7 +3,7 @@ from django.shortcuts import render_to_response
 
 from blog.models import Tag
 
-import urllib
+from urllib import urlopen
 import simplejson
 
 def tags():
@@ -14,12 +14,10 @@ def tags():
 
 def twitter():
     USERNAME = 'zachtib'
-    s = urllib.urlopen('http://twitter.com/status/user_timeline/%s.json' \
-        '?count=10' % USERNAME).read()
-    o = simplejson.loads(s)
-    return render_to_response('widgets/twitter.html', {'tweets': o})
-
-
+    u = urlopen('http://twitter.com/status/user_timeline/%s.json' % USERNAME)
+    j = simplejson.loads(u.read())
+    f = [ t for t in j if not t['text'].startswith('@') ][:5]
+    return render_to_response('widgets/twitter.html', {'tweets': f})
 
 def load(request, widget):
     try:
