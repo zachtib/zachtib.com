@@ -1,71 +1,103 @@
 {% extends "base.html" %}
 {% block title %}Resume{% endblock %}
+{% block head %}
+     <style type="text/css"> 
+        * { margin: 0; padding: 0; }
+        body { font: 16px Helvetica, Sans-Serif; line-height: 24px; }
+        .clear { clear: both; }
+        #page-wrap { width: 800px; margin: 40px auto 60px; }
+        #pic { float: right; margin: -30px 0 0 0; }
+        h1 { margin: 0 0 16px 0; padding: 0 0 16px 0; font-size: 42px; font-weight: bold; letter-spacing: -2px; border-bottom: 1px solid #999; }
+        h2 { font-size: 20px; margin: 0 0 6px 0; position: relative; }
+        h2 span { position: absolute; bottom: 0; right: 0; font-style: italic; font-family: Georgia, Serif; font-size: 16px; color: #999; font-weight: normal; }
+        p { margin: 0 0 16px 0; }
+        a { color: #999; text-decoration: none; border-bottom: 1px dotted #999; }
+        a:hover { border-bottom-style: solid; color: black; }
+        ul { margin: 0 0 32px 17px; }
+        #objective { width: 500px; float: left; }
+        #objective p { font-family: Georgia, Serif; font-style: italic; color: #666; }
+        dt { font-style: italic; font-weight: bold; font-size: 18px; text-align: right; padding: 0 26px 0 0; width: 150px; float: left; height: 100px; border-right: 1px solid #999;  }
+        dd { width: 600px; float: right; }
+        dd.clear { float: none; margin: 0; height: 15px; }
+     </style> 
+{% endblock %
 {% block content %}
 {% load markup %}
-<h1>{{ resume.name }}</h1>
-<p>Objective - {{ resume.objective }}</p>
-{% if degrees %}
-    <p>Education</p>
-    <ul>
-    {% for degree in degrees %}
-        <li><p>{{ degree.school }}</p>
-            <p>{{ degree.degree }}</p>
-            <p>{{ degree.graddate }}</p></li>
-    {% endfor %}
-    </ul>
-{% endif %}
-{% if jobs %}
-    <p>Employment History</p>
-    <ul>
-    {% for job in jobs %}
-        <li><p>{{ job.company }}</p>
-            <p>{{ job.location }}</p>
-            <p>{{ job.position }}</p>
-            <p>{{ job.startdate }} -
+<div id="contact-info" class="vcard">
+    <h1 class = "fn">{{ resume.name }}</h1>
+</div>
+
+<div id="objective">
+    <p>{{ resume.objective }}</p>
+</div>
+
+<div class="clear"</div>
+
+<dl>
+
+    <dd class="clear"></dd>
+
+    {% if degrees %}
+    <dt>Education</dt>
+        {% for degree in degrees %}
+        <dd>
+            <h2>{{ degree.school }}</h2>
+            <p>{{ degree.degree }} {{ degree.graddate }}</p>
+        </dd>
+        {% endfor %}
+    {% endif %}
+
+    {% if jobs %}
+    <dt>Employment History</dt>
+        {% for job in jobs %}
+        <dd>
+            <h2>{{ job.company }}</h2>
+            <p><strong>Location:</strong> {{ job.location }}</p>
+            <p><strong>Position:</strong> {{ job.position }}</p>
+            <p><strong>Start:</strong> {{ job.startdate }}</p>
             {% if job.enddate %}
-                {{ job.enddate }}
-            {% else %}
-                Present
+            <p><strong>End:</strong> {{ job.enddate }}</p>
             {% endif %}
-            </p>
-            <p>{{ job.description }}</p></li>
-    {% endfor %}
-    </ul>
-{% endif %}
-{% if projects %}
-    <p>Independent Projects</p>
-    <ul>
-    {% for project in projects %}
-        <li><p>{{ project.name }}</p>
-            <p>{{ project.position }}</p>
-            <p>{{ project.begindate }} -
-            {% if project.enddate %}
-                {{ project.enddate }}
-            {% else %}
-                Present
+            <p> {{ job.description }} </p>
+        </dd>
+        {% endfor %}
+    {% endif %}
+
+    {% if projects %}
+    <dt>Independent Projects</dt>
+        {% for project in projects %}
+        <dd>
+            <h2>{{ project.name }}</h2>
+            <p><strong>Start:</strong> {{ job.startdate }}</p>
+            {% if job.enddate %}
+            <p><strong>End:</strong> {{ job.enddate }}</p>
             {% endif %}
-            </p>
-            <p>{{ project.description|markdown }}</p></li>
-    {% endfor %}
-    </ul>
-{% endif %}
-{% if skills %}
-    <p>Skills</p>
-    <ul>
+            <p>{{ project.description|markdown }}</p>
+        </dd>
+        {% endfor %}
+    {% endif %}
+
+    {% if skills %}
+    <dt>Skills</dt>
+    <dd>
     {% for skill in skills %}
-        <li>{{ skill.description }}</li>
+        <p>{{ skill.description }}</p>
     {% endfor %}
-    </ul>
-{% endif %}
-{% if extras %}
-    <p>Extracurricular Activities</p>
-    <ul>
-    {% for extra in extras %}
-        <li>
-            {{ extra.description }}:
-            {{ extra.begindate }} - {{ extra.enddate }}
-        </li>
-    {% endfor %}
-    </ul>
-{% endif %}
+    </dd>
+    {% endif %}
+
+    {% if extras %}
+    <dt>Extracurricular Activities</dt>
+        {% for extra in extras %}
+        <dd>
+            <h2>{{ extra.description }}</h2>
+            <p><strong>Start:</strong> {{ extra.begindate }}</p>
+            {% if job.enddate %}
+            <p><strong>End:</strong> {{ extra.enddate }}</p>
+            {% endif %}
+        </dd>
+        {% endfor %}
+    {% endif %}
+</dl>
+
 {% endblock %}
