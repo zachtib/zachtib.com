@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Resume{% endblock %}
 {% block content %}
+{% load markup %}
 <h1>{{ resume.name }}</h1>
 <p>Objective - {{ resume.objective }}</p>
 {% if degrees %}
@@ -44,7 +45,7 @@
                 Present
             {% endif %}
             </p>
-            <p>{{ project.description }}</p></li>
+            <p>{{ project.description|markdown }}</p></li>
     {% endfor %}
     </ul>
 {% endif %}
