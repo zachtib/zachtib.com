@@ -72,9 +72,9 @@
         {% for project in projects %}
         <dd>
             <h2>{{ project.name }}</h2>
-            <p><strong>Start:</strong> {{ job.startdate }}</p>
-            {% if job.enddate %}
-            <p><strong>End:</strong> {{ job.enddate }}</p>
+            <p><strong>Start:</strong> {{ project.begindate }}</p>
+            {% if project.enddate %}
+            <p><strong>End:</strong> {{ project.enddate }}</p>
             {% endif %}
             <p>{{ project.description|markdown }}</p>
         </dd>
