@@ -4,7 +4,7 @@ from django.db import models
 class Resume(models.Model):
     user = models.ForeignKey(User)
     name = models.CharField('Full Name', max_length=200)
-    objective = models.CharField(max_length=200)
+    objective = models.TextField()
 
     def __unicode__(self):
         return 'Resume for %s' % self.name
