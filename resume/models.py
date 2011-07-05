@@ -33,7 +33,8 @@ class Project(models.Model):
 
 class Skill(models.Model):
     resume = models.ForeignKey(Resume)
-    description = models.CharField(max_length=200)
+    title = models.CharField(max_length=200)
+    description = models.TextField()
 
 class Extracurricular(models.Model):
     resume = models.ForeignKey(Resume)
