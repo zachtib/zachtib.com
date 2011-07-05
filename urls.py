@@ -30,6 +30,7 @@ urlpatterns = patterns('',
     (r'^blog/page/(?P<page>\d+)/$', 'blog.views.archive'),
 
     (r'^resume/$', 'resume.views.index'),
+    (r'^resume/noheader/$', 'resume.views.index', {'noheader': True}),
 
     (r'^widget/(?P<widget>\w+)/$', 'widgets.views.load'),
 
