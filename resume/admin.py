@@ -13,7 +13,7 @@ class ProjectInline(admin.StackedInline):
     model = Project
     extra = 1
 
-class SkillInline(admin.TabularInline):
+class SkillInline(admin.StackedInline):
     model = Skill
     extra = 1
 
