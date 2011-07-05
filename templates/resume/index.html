@@ -64,7 +64,7 @@
             {% if job.enddate %}
             <p><strong>End:</strong> {{ job.enddate }}</p>
             {% endif %}
-            <p> {{ job.description }} </p>
+            <p> {{ job.description|markdown }} </p>
         </dd>
         {% endfor %}
     {% endif %}
