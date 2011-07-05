@@ -92,7 +92,7 @@
     <dd>
     {% for skill in skills %}
         <h2>{{ skill.title }}</h2>
-        <p>{{ skill.description }}</p>
+        <p>{{ skill.description|markdown }}</p>
     {% endfor %}
     </dd>
     {% endif %}
